@@ -1,11 +1,12 @@
 #!/bin/sh
 
 VERSION_SCRIPT=0.1.0
+PWD=$(pwd)
 
-source scripts-utils/valid_podman.sh
-source scripts-utils/color_message.sh
-source scripts-utils/date.sh
-source scripts-utils/debug_message.sh
+source ${PWD}/scripts-utils/valid_podman.sh
+source ${PWD}/scripts-utils/color_message.sh
+source ${PWD}/scripts-utils/date.sh
+source ${PWD}/scripts-utils/debug_message.sh
 
 REPOSITORY=image-${current_millis}
 TAG=v0.1.0
