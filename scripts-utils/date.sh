@@ -10,4 +10,4 @@ date --version > /dev/null 2>&1 && {
     current_millis=$(($(date +%s) * 1000))
 }
 
-echo "Fecha y hora actual en milisegundos: $current_millis"
+#echo "Fecha y hora actual en milisegundos: $current_millis"
