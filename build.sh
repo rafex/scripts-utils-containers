@@ -39,7 +39,7 @@ usage() {
 # docker build --progress=plain --no-cache -t $REPOSITORY:$TAG -f $DOCKERFILE .
 
 # Parse options using getopts
-while getopts ":vV:n:t:d:h" option; do
+while getopts ":vVn:t:d:h" option; do
     case "${option}" in
         v)  # Version option
             echo "Version: $VERSION_SCRIPT"
@@ -68,6 +68,8 @@ while getopts ":vV:n:t:d:h" option; do
             ;;
     esac
 done
+shift $(($OPTIND - 1))
+color_message "red" "Remaining arguments are: $*"
 
 variables () {
   color_message "cyan" "Building image..."
@@ -82,5 +84,5 @@ if [ "$DEBUG" = true ]; then
   color_message "red" "Debug mode activated."
   eval_command "docker build --progress=plain --no-cache -t $REPOSITORY:$TAG -f $DOCKERFILE ." $DEBUG
 else
-  docker build --progress=plain --no-cache -t $REPOSITORY:$TAG -f $DOCKERFILE .
+  docker build -t $REPOSITORY:$TAG -f $DOCKERFILE .
 fi
