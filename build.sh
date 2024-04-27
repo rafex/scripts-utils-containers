@@ -2,11 +2,19 @@
 
 VERSION_SCRIPT=0.1.0
 PWD=$(pwd)
+#export PATH_MY_SCRIPT=$PWD
 
-source ${PWD}/scripts-utils/valid_podman.sh
-source ${PWD}/scripts-utils/color_message.sh
-source ${PWD}/scripts-utils/date.sh
-source ${PWD}/scripts-utils/debug_message.sh
+if [ -z "$PATH_MY_SCRIPT" ]; then
+    echo "La variable no está definida o está vacía."
+    PATH_MY_SCRIPT=$PWD
+#else
+#    echo "La variable está definida con el valor: $PATH_MY_SCRIPT"
+fi
+
+source ${PATH_MY_SCRIPT}/scripts-utils/valid_podman.sh
+source ${PATH_MY_SCRIPT}/scripts-utils/color_message.sh
+source ${PATH_MY_SCRIPT}/scripts-utils/date.sh
+source ${PATH_MY_SCRIPT}/scripts-utils/debug_message.sh
 
 REPOSITORY=image-${current_millis}
 TAG=v0.1.0
