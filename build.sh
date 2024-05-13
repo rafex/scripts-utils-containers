@@ -26,20 +26,21 @@ color_message "green" "Building image script"
 
 # Function to display help text
 usage() {
-  color_message "cyan" "Usage: $0 [-v] [-V] [-n] [-t] [-d] [-h]"
+  color_message "cyan" "Usage: $0 [-v] [-V] [-n] [-t] [-d] [-D] [-h]"
   color_message "cyan" "Options:"
   color_message "cyan" "  -v          Display version."
   color_message "cyan" "  -V          Enable Verbose mode."
   color_message "cyan" "  -n          Name image."
   color_message "cyan" "  -t          Tag image."
   color_message "cyan" "  -d          Dockerfile"
+  color_message "cyan" "  -D          Debug mode"
   color_message "cyan" "  -h          Display the help message"
 }
 
 # docker build --progress=plain --no-cache -t $REPOSITORY:$TAG -f $DOCKERFILE .
 
 # Parse options using getopts
-while getopts ":vVn:t:d:h" option; do
+while getopts ":vVn:t:d:Dh" option; do
     case "${option}" in
         v)  # Version option
             echo "Version: $VERSION_SCRIPT"
@@ -56,6 +57,9 @@ while getopts ":vVn:t:d:h" option; do
             ;;
         d)  # Dockerfile option
             DOCKERFILE=${OPTARG}
+            ;;
+        D)  # Debug option
+            DEBUG=true
             ;;
         h)  # Help option
             usage
